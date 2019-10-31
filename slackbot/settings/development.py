@@ -17,7 +17,7 @@ from decouple import config
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 DATABASE_ENGINE = 'sqlite'
-SQLITE_FILE = config('SQLITE_FILE', 'slackbot.db')
+SQLITE_FILE = config('SQLITE_FILE', 'database.db')
 
 # Database
 DATABASES = {

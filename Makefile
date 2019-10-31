@@ -1,22 +1,31 @@
+####################################################################################################
+# Default 
+####################################################################################################
 clean-pyc:
 	@find . -name '*.pyc' -exec rm --force {} +
 	@find . -name '*.pyo' -exec rm --force {} +
 	@find . -name '*~' -exec rm --force  {} +
 
-dependencies:
-	pip install -r requirements.txt
+####################################################################################################
+# Django 
+####################################################################################################
+install:
+	pip3 install -r requirements.txt
 
-prepare-db:
-	@python -c 'from slackbot.models import create_all; create_all()'
+shell:
+	@python3 manage.py shell
 
-install: dependencies config prepare-db
-	@if [ ! -d logs ] ; then mkdir logs ; echo "logs directory created!" ; fi
+run:
+	@python3 manage.py runserver
 
+####################################################################################################
+# Slack 
+####################################################################################################
 find-user-id:
-	@python -c "from slackbot.slack.methods import find_id; print(find_id('user','$(USER)'))"
+	@python3 -c "from slackbot.slack.methods import find_id; print(find_id('user','$(USER)'))"
 
 find-channel-id:
-	@python -c "from slackbot.slack.methods import find_id; print(find_id('channel','$(CHANNEL)'))"
+	@python3 -c "from slackbot.slack.methods import find_id; print(find_id('channel','$(CHANNEL)'))"
 
 find-pchannel-id:
-	@python -c "from slackbot.slack.methods import find_id; print(find_id('priv_channel','$(CHANNEL)'))"
+	@python3 -c "from slackbot.slack.methods import find_id; print(find_id('priv_channel','$(CHANNEL)'))"

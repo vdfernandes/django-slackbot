@@ -13,7 +13,6 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = '1wa&*64kg9tw50*d*47cmt0wm1(dmlts)7@g5n1$t6nwc+ljlg'
 ALLOWED_HOSTS = ['*']
 
-
 # Application Definition
 INSTALLED_APPS = [
     'django.contrib.admin',
@@ -22,6 +21,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'slackbot'
 ]
 
 MIDDLEWARE = [

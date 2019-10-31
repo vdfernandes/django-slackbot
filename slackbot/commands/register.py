@@ -2,9 +2,8 @@
 # -*- coding: utf-8 -*-
 import re
 
-from slackbot.models import Session
-from slackbot.models.card import Card
-from slackbot.models.channel import Channel
+# from slackbot.models.card import Card
+# from slackbot.models.channel import Channel
 from slackbot.jira.methods import open_issue, assign_issue, add_watcher
 from slackbot.slack.methods import (
     user_info,
@@ -22,7 +21,6 @@ from slackbot.slack.slackcommand import (
 
 
 class Register(SlackCommand):
-    session = Session()
     help_text = "\n".join([
         "Comando responsável por registrar cards."
     ])
@@ -165,6 +163,7 @@ class Register(SlackCommand):
         return user_info(mentioned_user[2:-1]).get('user')
 
     def _open_card(self, ts, text, requester, operator, project, issue_type, priority):
+        """
         if self.channel.startswith('C'):
             ch_info = channel_info(self.channel)
             channel = ch_info.get('channel').get('name')
@@ -220,3 +219,4 @@ class Register(SlackCommand):
 
         self.text = "Card `{}` criado.\n{}".format(issue.key, issue.permalink())
         self.send()
+        """

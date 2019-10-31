@@ -7,6 +7,11 @@ import threading
 import logging
 import argparse
 
+# Django Configuration
+import django
+django.setup()
+
+# Imports
 from django.conf import settings
 from slackbot.daemon import Daemon
 from slackbot.slack.rtmslackbot import RTMSlackBot

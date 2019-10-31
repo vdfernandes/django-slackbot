@@ -1,7 +1,6 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
 from django.conf import settings
-from slackbot.models import Session
 from slackbot.models.card import Card
 from slackbot.jira.methods import comment_issue
 from slackbot.slack.methods import user_info
@@ -13,7 +12,6 @@ from slackbot.slack.slackcommand import (
 
 
 class HandleCommand(SlackCommand):
-    session = Session()
 
     @handle_exceptions
     def run(self):
@@ -31,9 +29,11 @@ class HandleCommand(SlackCommand):
                 self.text = 'Preciso validar se tem card.' 
                 self.send()
                 ###
-                card = self.session.query(Card).filter_by(slack_ts=self.thread_ts).first()
-                if card:
-                    print('Tem card.')
+                card = Card.objects.filter(slack_ts=self.mthread_ts).first()
+                self.text = "Card do JIRA: {}".format(card.jira_issue)
+                self.send()
+                # if card:
+                #     print('Tem card.')
                 
                 ###
                 self.text = 'Processo o que veio na mensagem.' 
