@@ -10,12 +10,10 @@ from slackbot.slack.methods import get_message
 from slackbot.slack.slackbot import SlackBot
 from slackbot.slack.slackcommand import SlackCommand
 from slackbot.slack.exception import RTMNotConnect, RTMConnectionLost
-from slackbot.utils import getenv
+from django.conf import settings
 
 # Variáveis de ambiente
-SLACK_CHANNEL = getenv('SLACK_CHANNEL')
-ECHO_COMMAND = getenv('RTM_STATUS')
-ECHO_SUBTYPE = ['file_share', 'file_comment', 'none']
+SLACK_CHANNEL = settings.SLACK_CHANNEL
 
 
 class RTMSlackBot(SlackBot):

@@ -11,17 +11,18 @@ https://docs.djangoproject.com/en/2.2/ref/settings/
 """
 
 import os
-from .base import * # noqa
+from slackbot.settings.base import * # noqa
+from decouple import config
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
+DATABASE_ENGINE = 'sqlite'
+SQLITE_FILE = config('SQLITE_FILE', 'slackbot.db')
 
 # Database
-# https://docs.djangoproject.com/en/2.2/ref/settings/#databases
-
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'slackbot.db'),
+        'NAME': os.path.join(BASE_DIR, SQLITE_FILE),
     }
 }

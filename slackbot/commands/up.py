@@ -1,6 +1,6 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
-from slackbot.utils import getenv
+from django.conf import settings
 from slackbot.models import Session
 from slackbot.models.card import Card
 from slackbot.jira.methods import comment_issue
@@ -27,7 +27,7 @@ class UP(SlackCommand):
             text = "*{}:* {}".format(user, pointed_msg.get('text'))
         except Exception as e:
             text = "Ops, parece não ter nenhuma mensagem acima dessa. :{}:".format(
-                getenv('REACTION_SURPRISE', 'thinking_face')
+                settings.REACTION_SURPRISE
             )        
         self.text = text 
         self.send()  

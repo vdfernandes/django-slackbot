@@ -61,6 +61,34 @@ USE_I18N = True
 USE_L10N = True
 USE_TZ = True
 
-
 # Static files (CSS, JavaScript, Images)
 STATIC_URL = '/static/'
+
+# Variáveis Gerais
+SLACKBOT_DAEMON = config('SLACKBOT_DAEMON', 'false')
+SLACKBOT_HOME = config('SLACKBOT_HOME', '/home/vinicius/Development/slackbot')
+
+# Initial Configurations
+DEFAULT_READ_DELAY = config('DEFAULT_READ_DELAY', 1)
+DEFAULT_RETRY_DELAY = config('DEFAULT_RETRY_DELAY', 15)
+DEFAULT_LOGLEVEL = config('DEFAULT_LOGLEVEL', 'DEEPDEBUG')
+
+# Slack Configurations
+SLACK_DOMAIN = config('SLACK_DOMAIN', '')
+SLACK_TOKEN = config('SLACK_TOKEN', '')
+SLACK_BOT_ID = config('SLACK_BOT_ID', '')
+SLACK_CHANNEL = config('SLACK_CHANNEL', '')
+
+# Jira Configurations
+JIRA_SERVER = config('JIRA_SERVER', '')
+JIRA_USER = config('JIRA_USER', '')
+JIRA_PASSWORD = config('JIRA_PASSWORD', '')
+
+# Echo Configurations
+ECHO_STATUS = config('ECHO_STATUS', False)
+ECHO_TARGET = config('ECHO_TARGET', '')
+ECHO_SOURCE = config('ECHO_SOURCE', 'C1FUPUPSN,C4ZEWGV24,C5E6GNETV')
+
+# Reactions
+REACTION_SAD = config('REACTION_SAD', 'fire')
+REACTION_SURPRISE = config('REACTION_SURPRISE', 'thinking_face')

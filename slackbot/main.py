@@ -7,7 +7,7 @@ import threading
 import logging
 import argparse
 
-from slackbot.utils import getenv
+from django.conf import settings
 from slackbot.daemon import Daemon
 from slackbot.slack.rtmslackbot import RTMSlackBot
 from slackbot.slack.exception import RTMConnectionLost
@@ -17,9 +17,9 @@ from slackbot.commands.register import Register
 from slackbot.commands.handlers import HandleCommand
 
 # Logging
-READ_DELAY = getenv('DEFAULT_READ_DELAY')
-RETRY_DELAY = getenv('DEFAULT_RETRY_DELAY')
-LOGLEVEL = getenv('DEFAULT_LOGLEVEL')
+READ_DELAY = settings.DEFAULT_READ_DELAY
+RETRY_DELAY = settings.DEFAULT_RETRY_DELAY
+LOGLEVEL = settings.DEFAULT_LOGLEVEL
 
 # Comandos aceitos
 known_commands = {
@@ -167,7 +167,7 @@ def main(sysargs):
     logger.debug("class {} instantiated".format(slackbot.__class__))
 
     if args.option == 'start':
-        if getenv('SLACKBOT_DAEMON') == 'true':
+        if settings.SLACKBOT_DAEMON == 'true':
             logger.info("Starting slackbot as deamon...")
             slackbot.start()
         else:

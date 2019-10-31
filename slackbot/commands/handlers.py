@@ -1,6 +1,6 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
-from slackbot.utils import getenv
+from django.conf import settings
 from slackbot.models import Session
 from slackbot.models.card import Card
 from slackbot.jira.methods import comment_issue
@@ -52,7 +52,7 @@ class HandleCommand(SlackCommand):
         except Exception as e:
             text = "\r\n".join([
                 "Um erro aconteceu no processamento da mensagem. :{}:".format(
-                    getenv('REACTION_SAD', 'bomb')
+                    settings.REACTION_SAD
                 ),
                 "*Erro:* `{}`".format(str(e))
             ])        

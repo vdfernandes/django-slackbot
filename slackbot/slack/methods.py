@@ -5,10 +5,10 @@ import re
 import logging
 from functools import reduce
 from slackclient import SlackClient
-from slackbot.utils import getenv
+from django.conf import settings
 
-TOKEN = getenv('SLACK_TOKEN')
-DOMAIN = getenv('SLACK_DOMAIN')
+TOKEN = settings.SLACK_TOKEN
+DOMAIN = settings.SLACK_DOMAIN
 
 slack_cli = SlackClient(TOKEN)
 

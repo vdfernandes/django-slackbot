@@ -2,15 +2,15 @@
 # -*- coding: utf-8 -*-
 import re
 import time
-from slackbot.utils import getenv
+from django.conf import settings
 from slackbot.slack.methods import channel_info
 from slackbot.slack.slackcommand import (
     SlackCommand,
     handle_exceptions
 )
 
-TARGET = getenv('ECHO_TARGET')
-SOURCE_LIST = getenv('ECHO_SOURCE')
+TARGET = settings.ECHO_TARGET
+SOURCE_LIST = settings.ECHO_SOURCE
 
 
 class Echo(SlackCommand):

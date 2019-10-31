@@ -1,8 +1,8 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
-from slackbot.utils import getenv
+from django.conf import settings
 
-DOMAIN = getenv('SLACK_DOMAIN')
-TOKEN = getenv('SLACK_TOKEN')
-BOT_ID = getenv('SLACK_BOT_ID')
+DOMAIN = settings.SLACK_DOMAIN
+TOKEN = settings.SLACK_TOKEN
+BOT_ID = settings.SLACK_BOT_ID
 ADMIN = ''
