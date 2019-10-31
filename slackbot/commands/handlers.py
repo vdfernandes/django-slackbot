@@ -25,30 +25,19 @@ class HandleCommand(SlackCommand):
             )
 
             if is_thread:
-                ####
-                self.text = 'Preciso validar se tem card.' 
-                self.send()
-                ###
-                card = Card.objects.filter(slack_ts=self.mthread_ts).first()
-                self.text = "Card do JIRA: {}".format(card.jira_issue)
-                self.send()
-                # if card:
-                #     print('Tem card.')
-                
-                ###
+                # Validação da existência de card
+                card = Card.objects.filter(slack_ts=self.mthread_ts)
+                if len(card) == 0:
+                    self.text = 'Não tem card, precisa criar.' 
+                    self.send()
+                else:
+                    self.text = 'Tem card, {}'.format(card[0].jira_issue) 
+                    self.send()
+
+                # Procesamento da mensagem enviada.
                 self.text = 'Processo o que veio na mensagem.' 
                 self.send()
-                ###
-
-                ###
-                self.text = 'Gravo numa tabela o card.' 
-                self.send()
-                ###
-
-                ###
-                self.text = 'Vou processando as respostas.' 
-                self.send()
-                ###
+                
         except Exception as e:
             text = "\r\n".join([
                 "Um erro aconteceu no processamento da mensagem. :{}:".format(
