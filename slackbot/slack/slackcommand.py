@@ -1,6 +1,7 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
 import argparse
+from django.conf import settings
 from slackbot.slack.slackbot import SlackBot
 from slackbot.slack.exception import CommandNotImplemented, PlannedException
 from slackbot.slack.methods import for_humans_text, get_message
@@ -101,10 +102,10 @@ def handle_exceptions(f):
                     self.arguments
                 )
             )
-            msg = "Parâmetros não reconhecidos para o comando `{}`\n```{}```".format(
-                self.command,
-                self.usage
-            )
+            msg = "\n".join([
+                "Parâmetros não reconhecidos para o comando `{}`.".format(self.command),
+                "```{}```".format(self.usage)
+            ])
             self.send(text=msg)
         except PlannedException as err:
             self.logger.error("Error in {} run(). Error: {}".format(
@@ -123,8 +124,10 @@ def handle_exceptions(f):
             )
             self.send(
                 text="\n".join([
-                    "Ops, alguma coisa errada não está certa! :bomb:",
-                    "`Erro na requisição à api do JIRA`"
+                    "Ops, alguma coisa errada não está certa! :{}:".format(
+                        settings.REACTION_ERROR
+                    ),
+                    "`Erro na requisição à api do JIRA.`"
                 ])
             )
         except Exception as err:
@@ -136,7 +139,9 @@ def handle_exceptions(f):
             )
             self.send(
                 text="\n".join([
-                    "Ops, alguma coisa errada não está certa! :bomb:",
+                    "Ops, alguma coisa errada não está certa! :{}:".format(
+                        settings.REACTION_ERROR
+                    ),
                     "`Impossivel processar o comando.`"
                 ])
             )

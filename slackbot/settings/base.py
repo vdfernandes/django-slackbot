@@ -72,6 +72,7 @@ SLACKBOT_HOME = config('SLACKBOT_HOME', '/home/vinicius/Development/slackbot')
 DEFAULT_READ_DELAY = config('DEFAULT_READ_DELAY', 1)
 DEFAULT_RETRY_DELAY = config('DEFAULT_RETRY_DELAY', 15)
 DEFAULT_LOGLEVEL = config('DEFAULT_LOGLEVEL', 'DEEPDEBUG')
+DEFAULT_LOGFILE = config('DEFAULT_LOGFILE', 'logs/slackbot.log')
 
 # Slack Configurations
 SLACK_DOMAIN = config('SLACK_DOMAIN', '')
@@ -92,3 +93,4 @@ ECHO_SOURCE = config('ECHO_SOURCE', 'C1FUPUPSN,C4ZEWGV24,C5E6GNETV')
 # Reactions
 REACTION_SAD = config('REACTION_SAD', 'fire')
 REACTION_SURPRISE = config('REACTION_SURPRISE', 'thinking_face')
+REACTION_ERROR = config('REACTION_ERROR', 'bomb')

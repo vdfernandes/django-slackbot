@@ -117,13 +117,13 @@ def start_logging(level):
         if level == 'DEEPDEBUG':
             lvl = 5
         else:
-            raise AttributeError("error with level")
+            raise AttributeError("Error with logging level.")
 
     # logger = logging.getLogger(__name__)
     logger = logging.getLogger()
     logger.setLevel(lvl)
 
-    file_handler = logging.FileHandler('logs/slackbot.log')
+    file_handler = logging.FileHandler(settings.DEFAULT_LOGFILE)
     file_handler.setLevel(lvl)
     f_formatter = logging.Formatter(
         '%(threadName)s: %(asctime)s - %(name)s - %(levelname)s - %(message)s')
@@ -168,8 +168,9 @@ def main(sysargs):
     slackbot = BotDeamon(
         pidfile='/tmp/slackbot.pid',
         stdout=outfile,
-        stderr=outfile)
-    logger.debug("class {} instantiated".format(slackbot.__class__))
+        stderr=outfile
+    )
+    logger.debug("Class {} instantiated.".format(slackbot.__class__))
 
     if args.option == 'start':
         if settings.SLACKBOT_DAEMON == 'true':
